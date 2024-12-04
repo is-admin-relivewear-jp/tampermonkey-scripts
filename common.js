@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-let jp = {
+window.jp = {
     relivewear: {
         tm: {
             /**
