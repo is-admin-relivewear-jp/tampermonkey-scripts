@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One's Closet発注残集計
 // @namespace    http://tampermonkey.net/
-// @version      2024-12-04
+// @version      2025-01-06
 // @description  try to take over the world!
 // @author       Shigekatsu Sasaki
 // @match        https://ones-closet.com/app/purchaseOrderRemain.php
@@ -65,7 +65,7 @@
         // 集計種別
         $("#condition_typeA").val("invoiceNo"); // 伝票番号別
         $("#condition_typeB").val("barcode"); // バーコード別
-        $("#condition_typeC").val("");
+        $("#condition_typeC").val("subSupplier"); // 工場別
 
         // 集計日付
         const to = moment().add(-1, "day"); // 今日-1
