@@ -24,7 +24,7 @@
         $("#condition_typeC").val("expectedDate"); // 入荷予定日別
 
         // 集計日付
-        const to = moment().add(180, "day"); // 今日+180日
+        const to = moment().add(30 * 6, "day"); // 今日+6ヶ月
         $("#condition_to").val(to.format("YYYY/MM/DD"));
 
         // 集計開始ボタンクリック
@@ -68,7 +68,7 @@
         $("#condition_typeC").val("subSupplier"); // 工場別
 
         // 集計日付
-        const to = moment().add(-1, "day"); // 今日-1
+        const to = moment().add(30 * 6, "day"); // 今日+6ヶ月
         $("#condition_to").val(to.format("YYYY/MM/DD"));
 
         // 集計開始ボタンクリック
