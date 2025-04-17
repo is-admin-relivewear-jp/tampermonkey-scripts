@@ -29,8 +29,14 @@
                 $("#query_way").change();
 
                 setTimeout(function(){
-                    const dateFrom = moment().add(-1, "months").startOf("month").format("YYYY/MM/DD");
-                    const dateTo = moment().add(-1, "months").endOf("month").format("YYYY/MM/DD");
+                    // 前月の月初～月末
+                    // const dateFrom = moment().add(-1, "months").startOf("month").format("YYYY/MM/DD");
+                    // const dateTo = moment().add(-1, "months").endOf("month").format("YYYY/MM/DD");
+
+                    // 当月の月初～前日
+                    const dateFrom = moment().startOf("month").format("YYYY/MM/DD");
+                    const dateTo = moment().add(-1, "days").format("YYYY/MM/DD");
+
                     $("#queryCondition_date").val(dateFrom);
                     $("#queryCondition_to").val(dateTo);
 
