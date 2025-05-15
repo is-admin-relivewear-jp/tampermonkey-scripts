@@ -16,7 +16,7 @@
     // 日付の処理にはmoment.jsを利用
     // @see https://qiita.com/taizo/items/3a5505308ca2e303c099
 
-    // 売上集計（拠点別3ヶ月）
+    // 売上集計（拠点別6ヶ月）
     const f1 = function(){
         // 集計対象の卸売上を選択解除
         $("#invoice_sales").removeClass("btn-primary").addClass("btn-default");
@@ -30,7 +30,7 @@
 
         // 集計日付
         const now = moment();
-        const from = moment().date(1).month(now.month() - 3); // 3か月前の1日
+        const from = moment().date(1).month(now.month() - 6); // 6か月前の1日
         const to = moment().date(1).month(now.month() - 1).endOf("month"); // 1ヶ月前の末日
         $("#condition_from").val(from.format("YYYY/MM/DD"));
         $("#condition_to").val(to.format("YYYY/MM/DD"));
@@ -38,7 +38,7 @@
         // 集計開始ボタンクリック
         // （画面遷移はしないためURLに変化なし）
         setTimeout(function(){
-            jp.relivewear.tm.showMessage("売上集計（拠点別3ヶ月）集計中...");
+            jp.relivewear.tm.showMessage("売上集計（拠点別6ヶ月）集計中...");
 
             $("#condition_start").click();
         }, 100);
@@ -118,7 +118,7 @@
         }, 500);
     };
 
-    // 売上集計（得意先別3ヶ月）
+    // 売上集計（得意先別6ヶ月）
     const f3 = function(){
         // 集計対象の卸売上を選択
         $("#invoice_sales").removeClass("btn-default").addClass("btn-primary");
@@ -132,7 +132,7 @@
 
         // 集計日付
         const now = moment();
-        const from = moment().date(1).month(now.month() - 3); // 3か月前の1日
+        const from = moment().date(1).month(now.month() - 6); // 6か月前の1日
         const to = moment().date(1).month(now.month() - 1).endOf("month"); // 1ヶ月前の末日
         $("#condition_from").val(from.format("YYYY/MM/DD"));
         $("#condition_to").val(to.format("YYYY/MM/DD"));
@@ -140,7 +140,7 @@
         // 集計開始ボタンクリック
         // （画面遷移はしないためURLに変化なし）
         setTimeout(function(){
-            jp.relivewear.tm.showMessage("売上集計（得意先別3ヶ月）集計中...");
+            jp.relivewear.tm.showMessage("売上集計（得意先別6ヶ月）集計中...");
 
             $("#condition_start").click();
         }, 100);
