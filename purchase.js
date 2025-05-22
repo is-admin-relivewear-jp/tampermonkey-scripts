@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One's Closet仕入伝票
 // @namespace    http://tampermonkey.net/
-// @version      2025-02-03
+// @version      2025-05-22
 // @description  try to take over the world!
 // @author       Shigekatsu Sasaki
 // @match        https://ones-closet.com/app/purchase.php
@@ -17,6 +17,45 @@
     // @see https://qiita.com/taizo/items/3a5505308ca2e303c099
 
     const f1 = function(){
+        // 表示ボタンクリック
+        setTimeout(function(){
+            $("#list_disp").click();
+
+            // 未支払伝票クリック
+            setTimeout(function(){
+                $("#list_qf23").click();
+            }, 500);
+        }, 500);
+
+        let count = 0;
+        // 明細が表示されるまで待機
+        const timerId = setInterval(function(){
+            if ($("#list_result tbody tr").length) {
+                $("#list_exp").click(); // 書き出しアイコンのクリック
+                $("a.list_exportFormat")
+                    .filter(function(i, el){
+                        return $(el).text() == "需要予測・発注・在庫管理シート用"
+                    })
+                    .click(); // 「需要予測・発注・在庫管理シート用」の選択
+
+                // CSVのダウンロードのダイアログが出てくるので手動で保存
+
+                clearInterval(timerId);
+
+                setTimeout(function(){
+                    alert("書き出し処理 完了");
+                }, 500);
+            }
+
+            // 500*100ミリ秒（50秒）待っても明細が表示されない場合は処理中断
+            if (100 < count++) {
+                alert("画面遷移に時間がかかりすぎたため処理を中断します。");
+                clearInterval(timerId);
+            }
+        }, 500);
+    };
+
+    const f2 = function(){
         // 表示ボタンクリック
         setTimeout(function(){
             $("#list_disp").click();
@@ -55,7 +94,7 @@
         }, 500);
     };
 
-    const f2 = function() {
+    const f3 = function() {
         setTimeout(function(){
             // 検索ボタンクリック
             $("#list_query").click();
@@ -125,8 +164,9 @@
         jp.relivewear.tm.confirm(
             "自動書き出しを実行しますか？",
             {
-                "はい（納品予定表）": f1,
-                "はい（α自主回収）": f2,
+                "はい（需要予測・発注・在庫管理シート）": f1,
+                "はい（納品予定表）": f2,
+                "はい（α自主回収）": f3,
             }
         );
     }, 1000);
