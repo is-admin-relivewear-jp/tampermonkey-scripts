@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One's Closet移動伝票
 // @namespace    http://tampermonkey.net/
-// @version      2025-05-22
+// @version      2025-07-03
 // @description  try to take over the world!
 // @author       Shigekatsu Sasaki
 // @match        https://ones-closet.com/app/move.php
@@ -21,9 +21,14 @@
         setTimeout(function(){
             $("#list_disp").click();
 
-            // 未支払伝票クリック
+            // 過去３ヶ月クリック
             setTimeout(function(){
-                $("#list_qf23").click();
+                // $("#list_qf27").click();
+                $("a.list_queryFormat")
+                    .filter(function(i, el){
+                        return $(el).text() == "過去３ヶ月"
+                    })
+                    .click(); // 「過去３ヶ月」の選択
             }, 500);
         }, 500);
 
