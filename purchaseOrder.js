@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         One's Closet発注伝票
 // @namespace    http://tampermonkey.net/
-// @version      2025-10-08
+// @version      2025-10-14
 // @description  try to take over the world!
 // @author       Shigekatsu Sasaki
 // @match        https://ones-closet.com/app/purchaseOrder.php
@@ -34,7 +34,7 @@
                 $("#list_exp").click(); // 書き出しアイコンのクリック
                 $("a.list_exportFormat")
                     .filter(function(i, el){
-                        return $(el).text() == "需要予測・発注・在庫管理シート用"
+                        return $(el).text() == "需要予測・発注・在庫管理シート用";
                     })
                     .click(); // 「需要予測・発注・在庫管理シート用」の選択
 
@@ -73,7 +73,7 @@
                 $("#list_exp").click(); // 書き出しアイコンのクリック
                 $("a.list_exportFormat")
                     .filter(function(i, el){
-                        return $(el).text() == "納品予定表用"
+                        return $(el).text() == "納品予定表用";
                     })
                     .click(); // 「納品予定表用」の選択
 
@@ -170,7 +170,7 @@
             setTimeout(function(){
                 $("a.list_queryFormat")
                     .filter(function(i, el){
-                        return $(el).text() == "送付予定表用";
+                        return $(el).text() == "納品予定表・送付予定表用";
                     })
                     .click();
 
@@ -192,7 +192,7 @@
                 $("a.list_exportFormat")
                     .filter(function(i, el){
                         // 納品予定表のExportセットを流用
-                        return $(el).text() == "納品予定表用"
+                        return $(el).text() == "納品予定表用" || $(el).text() == "納品予定表・送付予定表用";
                     })
                     .click();
 
@@ -220,7 +220,7 @@
                 "はい（需要予測・発注・在庫管理シート）": f1,
                 "はい（納品予定表）": f2,
 //                "はい（α自主回収）": f3,
-                "はい（送付予定表）": f4,
+                "はい（納品予定表・送付予定表）": f4,
             },
             600
         );
